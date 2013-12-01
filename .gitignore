@@ -1,0 +1,6 @@
+.android/
+.bash_history*
+.gitconfig
+.viminfo
+dev/
+ttemp/

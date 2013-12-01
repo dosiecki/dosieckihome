@@ -1,4 +1,0 @@
-dosieckihome
-============
-
-my home dir

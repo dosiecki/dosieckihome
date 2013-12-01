@@ -1,0 +1,18 @@
+vbell on
+startup_message off
+autodetach on
+defscrollback 10000
+zombie kr
+termcapinfo xterm ti@:te@:Z0=\E[?3h:Z1=\E[?3l
+hardstatus alwayslastline "%{= .Kk}%-Lw%{= bw}%50>%n%f  %t%{-}%+Lw%< %=%D %M %d %c:%s%{-}"
+width 132
+
+chdir $(HOME)
+screen -t "admin" 0
+screen -t "sandbox" 1 htop
+chdir ${HOME}/dev/nb/NewsBlur/clients/android/NewsBlur
+screen -t "dev1" 2
+screen -t "dev2" 3 
+chdir ${HOME}
+
+select 0
