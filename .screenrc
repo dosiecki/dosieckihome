@@ -9,7 +9,7 @@ width 132
 
 chdir $(HOME)
 screen -t "admin" 0
-screen -t "sandbox" 1 htop
+screen -t "sandbox" 1
 chdir ${HOME}/dev/nb/NewsBlur/clients/android/NewsBlur
 screen -t "dev1" 2
 screen -t "dev2" 3 
