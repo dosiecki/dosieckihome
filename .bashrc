@@ -75,7 +75,7 @@ if [ "$PS1" ]; then
     complete -cf sudo
 
     # osiecki@20080421 - ignore .svn dirs in tab completion
-    export FIGNORE=".svn";
+    export FIGNORE=".svn:.git";
 
     # osiecki@20090630 - disable messaging
     mesg n
@@ -83,7 +83,7 @@ if [ "$PS1" ]; then
     # osiecki@20090723 - history improvements
     shopt -s histappend
     export HISTCONTROL=erasedups
-    export HISTSIZE=1024
+    export HISTSIZE=16384
 
     # osiecki@20130319 - run after every shell command
     export PROMPT_COMMAND="history -a"
