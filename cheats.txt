@@ -1,0 +1,10 @@
+# see top 10 memory users: /bin/ps -eww --format=rss,vsize,user,args --sort=-rss | head -n10
+# new stack in props file (textpad style): s/^\([^=]+\)\.Existing=\(.+\)$/\0\n\1.New=\2/
+# delete all empty files: find . -type f -empty | xargs rm
+# block an IP: iptables -A OUTPUT -d 10.184.90.73 -j DROP
+# unblock an IP: iptables -D OUTPUT -d 10.184.90.73 -j DROP
+# convert any date/time to unix format: perl -e 'use Date::Parse; print str2time("2011/09/20 17:50 -0700")'
+# re-join multi-line debug logs: perl -e 'my $n; while(chomp(my $l = <>)){if($l =~ m/^[^\[]*\[[A-Z]*\]/){print $n . "\n"; $n = $l}else{$n .= $l}}' 
+# show git branches: git branch -a
+# info on remotes: git remote show (master|upstream)
+# timkay aws shell upload: aws --curl-options=-k put s.ojii.net/NewsBlur-debug.apk bin/NewsBlur-debug.apk --set-acl=public-read
