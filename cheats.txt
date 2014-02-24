@@ -8,3 +8,4 @@
 # show git branches: git branch -a
 # info on remotes: git remote show (master|upstream)
 # timkay aws shell upload: aws --curl-options=-k put s.ojii.net/NewsBlur-debug.apk bin/NewsBlur-debug.apk --set-acl=public-read
+# top 10 biggest files on disk: find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
