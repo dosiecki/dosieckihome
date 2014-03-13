@@ -60,7 +60,7 @@ if [ "$PS1" ]; then
         '
     }
     function follow() {
-        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep -i --no-group-separator --context=1 'exception|newsblur' | trim_and_colour
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep -i --no-group-separator --context=1 'exception|newsblur|java' | trim_and_colour
     }
     
     # osiecki@20130402 - set a new terminal name
