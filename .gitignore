@@ -1,6 +1,12 @@
 .android/
 .bash_history*
+.cache/
 .gitconfig
+.macromedia/
+.mozilla/
 .viminfo
+.wicd/
 dev/
 ttemp/
+Desktop/
+installs/

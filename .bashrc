@@ -48,18 +48,19 @@ if [ "$PS1" ]; then
     # osiecki@20070102 - coloured logtails
     function trim_and_colour() {
         sed '
-        s/ [-0-9a-f]*@[a-z.]*:[0-9]* / /g
-        s/\(\[DEBUG\]\)/\o033[36m\1\o033[0m/g
-        s/\(\[INFO\]\)/\o033[35m\1 \o033[0m/g
-        s/\(\[WARN\]\)/\o033[33m\1 \o033[0m/g
-        s/\(\[ERROR\]\)/\o033[31m\1\o033[0m/g
-        s/\(\[FATAL\]\)/\o033[31;1m\1\o033[0m/g
-        s/\([A-Za-z]\{3\} [A-Za-z]\{3\} [0-9]\{2\} [0-9:]\{8\} [1-9][0-9]\{3\} GMT\)/\o033[34m\1\o033[0m/g
-        s/\([0-9]\{2\} [A-Za-z]\{3\} [1-9][0-9]\{3\} [0-9:]\{8\},[0-9]\{3\}\)/\o033[34m\1\o033[0m/g
+        s/^[0-9]\{2\}-[0-9]\{2\} //g
+        s/\([0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}.[0-9]\{3\}\) /\o033[34m\1\o033[0m /g
+        s/ \(V\/\)/ \o033[32m\1\o033[0m/g
+        s/ \(D\/\)/ \o033[36m\1\o033[0m/g
+        s/ \(I\/\)/ \o033[35m\1\o033[0m/g
+        s/ \(W\/\)/ \o033[33m\1\o033[0m/g
+        s/ \(E\/\)/ \o033[31m\1\o033[0m/g
+        s/\(Exception\)/\o033[31m\1\o033[0m/g
+        s/\(( *[0-9]\{1,9\})\):/\o033[34m\1\o033[0m/g
         '
     }
     function follow() {
-        tail -f $1 | trim_and_colour
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep -i --no-group-separator --context=1 'exception|newsblur|java' | trim_and_colour
     }
     
     # osiecki@20130402 - set a new terminal name
