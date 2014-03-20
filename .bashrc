@@ -47,7 +47,7 @@ if [ "$PS1" ]; then
 
     # osiecki@20070102 - coloured logtails
     function trim_and_colour() {
-        sed '
+        sed -u '
         s/^[0-9]\{2\}-[0-9]\{2\} //g
         s/\([0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}.[0-9]\{3\}\) /\o033[34m\1\o033[0m /g
         s/ \(V\/\)/ \o033[32m\1\o033[0m/g
@@ -60,7 +60,10 @@ if [ "$PS1" ]; then
         '
     }
     function follow() {
-        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep -i --no-group-separator --context=1 'exception|newsblur|java' | trim_and_colour
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep --line-buffered -i --no-group-separator --context=1 'exception|newsblur| at .*java' | trim_and_colour
+    }
+    function followall() {
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | trim_and_colour
     }
     
     # osiecki@20130402 - set a new terminal name
