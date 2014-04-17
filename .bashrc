@@ -29,6 +29,10 @@ if [ "$PS1" ]; then
     export PATH=/home/osiecki/script:$PATH
     export PATH=/home/osiecki/bin:$PATH
     export PATH=/home/osiecki/ttemp/awsshell:$PATH
+    export PATH=/home/osiecki/dev/recs/RecordStream/bin:$PATH
+
+    # osiecki@20140414 - perl path
+    export PERL5LIB=$PERL5LIB:/home/osiecki/dev/recs/RecordStream/lib
 
     # osiecki@20061214 - personal preferences
     export EDITOR=vim
@@ -83,8 +87,9 @@ if [ "$PS1" ]; then
 
     # osiecki@20090723 - history improvements
     shopt -s histappend
-    export HISTCONTROL=erasedups
+    export HISTCONTROL=erasedups:ignorespace
     export HISTSIZE=16384
+    export HISTFILESIZE=16384
 
     # osiecki@20130319 - run after every shell command
     export PROMPT_COMMAND="history -a"
