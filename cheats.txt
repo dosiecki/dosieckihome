@@ -1,12 +1,38 @@
-# see top 10 memory users: /bin/ps -eww --format=rss,vsize,user,args --sort=-rss | head -n10
-# new stack in props file (textpad style): s/^\([^=]+\)\.Existing=\(.+\)$/\0\n\1.New=\2/
-# delete all empty files: find . -type f -empty | xargs rm
-# block an IP: iptables -A OUTPUT -d 10.184.90.73 -j DROP
-# unblock an IP: iptables -D OUTPUT -d 10.184.90.73 -j DROP
-# convert any date/time to unix format: perl -e 'use Date::Parse; print str2time("2011/09/20 17:50 -0700")'
-# re-join multi-line debug logs: perl -e 'my $n; while(chomp(my $l = <>)){if($l =~ m/^[^\[]*\[[A-Z]*\]/){print $n . "\n"; $n = $l}else{$n .= $l}}' 
-# show git branches: git branch -a
-# info on remotes: git remote show (master|upstream)
-# timkay aws shell upload: aws --curl-options=-k put s.ojii.net/NewsBlur-debug.apk bin/NewsBlur-debug.apk --set-acl=public-read
-# top 10 biggest files on disk: find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
-# get time of latest local block: bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]*\([0-9]*\).*/\1/gp' | perl -e 'print scalar(localtime(<>))."\n"'
+# see top 10 memory users:
+/bin/ps -eww --format=rss,vsize,user,args --sort=-rss | head -n10
+
+# new stack in props file (textpad style):
+s/^\([^=]+\)\.Existing=\(.+\)$/\0\n\1.New=\2/
+
+# delete all empty files: 
+find . -type f -empty | xargs rm
+
+# block an IP: 
+iptables -A OUTPUT -d 10.184.90.73 -j DROP
+
+# unblock an IP: 
+iptables -D OUTPUT -d 10.184.90.73 -j DROP
+
+# convert any date/time to unix format: 
+perl -e 'use Date::Parse; print str2time("2011/09/20 17:50 -0700")'
+
+# re-join multi-line debug logs: 
+perl -e 'my $n; while(chomp(my $l = <>)){if($l =~ m/^[^\[]*\[[A-Z]*\]/){print $n . "\n"; $n = $l}else{$n .= $l}}' 
+
+# show git branches: 
+git branch -a
+
+# info on remotes: 
+git remote show (master|upstream)
+
+# timkay aws shell upload: 
+aws --curl-options=-k put s.ojii.net/NewsBlur-debug.apk bin/NewsBlur-debug.apk --set-acl=public-read
+
+# top 10 biggest files on disk: 
+find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
+
+# get time of latest local block: 
+bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]*\([0-9]*\).*/\1/gp' | perl -e 'print scalar(localtime(<>))."\n"'
+
+# latest bitquick boa sell orders:
+GET 'https://www.bitquick.co/apisell.php' | python -c 'from __future__ import print_function; import json,sys;obj=json.load(sys.stdin); map(lambda i: print(json.dumps(i)), obj);' | recs-grep '$r->{sell_amount_} > 0.05' | recs-sort --key=Dollars_BTC=numeric | recs-xform '$r->remove("time","btcaddressescrow")' | recs-join id id <(GET 'https://www.bitquick.co/buy-2?bank=Bank%20of%20America' | recs-fromre --key=id "orderid=([0-9]*)'") | recs-totable
