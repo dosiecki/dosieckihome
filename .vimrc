@@ -17,6 +17,6 @@ set number                       " enable line numbering
 set numberwidth=4                " use 4 characters of space for the margin
 :hi LineNr guifg=gray guibg=darkblue       " gray line numbers
 :hi LineNr ctermfg=gray ctermbg=darkblue   " blue line number BG
-
-let g:airline_theme='badwolf'              " airline theme
-set laststatus=2                           " make airline show up immediately
+set undofile                     " persist undo buffers
+set undodir=~/.vim/undo          " keep undo buffers in the vim dir
+set undolevels=1024              " max undo levels per buffer
