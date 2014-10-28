@@ -6,7 +6,7 @@ autodetach on
 defscrollback 10000
 zombie kr
 termcapinfo xterm ti@:te@:Z0=\E[?3h:Z1=\E[?3l
-hardstatus alwayslastline "%{= Kk}%?%-Lw%?%{B}(%{W}%n*%f%t%?(%u)%?%{B})%{w}%?%+Lw%?%? %= %D %M %d %c:%s%{-}"
+hardstatus alwayslastline "%{= Kw}%?%-Lw%?%{B}(%{W}%n*%f%t%?(%u)%?%{B})%{w}%?%+Lw%?%? %= %D %M %d %c:%s%{-}"
 
 chdir $(HOME)
 screen -t "admin" 0
