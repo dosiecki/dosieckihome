@@ -30,6 +30,7 @@ if [ "$PS1" ]; then
     export PATH=/home/osiecki/bin:$PATH
     export PATH=/home/osiecki/ttemp/awsshell:$PATH
     export PATH=/home/osiecki/dev/recs/RecordStream/bin:$PATH
+    export PATH=/home/osiecki/installs/android-sdk-linux/platform-tools:$PATH
 
     # osiecki@20140414 - perl path
     export PERL5LIB=$PERL5LIB:/home/osiecki/dev/recs/RecordStream/lib
@@ -63,9 +64,11 @@ if [ "$PS1" ]; then
         s/\(( *[0-9]\{1,9\})\):/\o033[34m\1\o033[0m/g
         '
     }
+
     function follow() {
-        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep --line-buffered -i --no-group-separator --context=1 'exception|newsblur| at .*java' | trim_and_colour
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep --line-buffered -i --no-group-separator --context=1 'exception|newsblur| at .*java' | egrep --line-buffered -v -i 'GA.SERVICE|AbstractMetricsFactoryImpl' | trim_and_colour
     }
+
     function followall() {
         ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | trim_and_colour
     }
@@ -106,5 +109,9 @@ if [ "$PS1" ]; then
 
     # osiecki@20130615 - runtime libs
     export LD_LIBRARY_PATH=/usr/local/lib/
+
+    # osiecki@20141108 - no terminal stops
+    stty stop undef
+    stty start undef
 
 fi
