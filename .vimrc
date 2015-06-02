@@ -20,3 +20,4 @@ set numberwidth=4                " use 4 characters of space for the margin
 set undofile                     " persist undo buffers
 set undodir=~/.vim/undo          " keep undo buffers in the vim dir
 set undolevels=1024              " max undo levels per buffer
+set hidden                       " allow unsaved buffers to be backgrounded without confirmation
