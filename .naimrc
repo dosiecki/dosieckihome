@@ -226,8 +226,4 @@ newconn AIM TOC2
 #set AIM:log	0
 #set AIM:logfile	/home/osiecki/AIM.log
 
-# Connect to AIM.
-#set AIM:password mypass
-#clear
-# naim will prompt you for your password if it's not supplied here.
-AIM:connect ojiiikun
+
