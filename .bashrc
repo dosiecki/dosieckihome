@@ -31,6 +31,8 @@ if [ "$PS1" ]; then
     export PATH=/home/osiecki/ttemp/awsshell:$PATH
     export PATH=/home/osiecki/dev/recs/RecordStream/bin:$PATH
     export PATH=/home/osiecki/installs/android-sdk-linux/platform-tools:$PATH
+    export PATH=/home/osiecki/installs/gradle/gradle-2.4/bin:$PATH
+    export PATH=/home/osiecki/installs/PathPicker:$PATH
 
     # osiecki@20140414 - perl path
     export PERL5LIB=$PERL5LIB:/home/osiecki/dev/recs/RecordStream/lib
@@ -115,3 +117,7 @@ if [ "$PS1" ]; then
     stty start undef
 
 fi
+
+export PATH=/home/osiecki/installs/torch/install/bin:$PATH  # Added automatically by torch-dist
+export LD_LIBRARY_PATH=/home/osiecki/installs/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
+export DYLD_LIBRARY_PATH=/home/osiecki/installs/torch/install/lib:$DYLD_LIBRARY_PATH  # Added automatically by torch-dist
