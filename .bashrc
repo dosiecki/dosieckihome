@@ -68,7 +68,7 @@ if [ "$PS1" ]; then
     }
 
     function follow() {
-        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep --line-buffered -i --no-group-separator --context=1 'exception|newsblur| at .*java' | egrep --line-buffered -v -i 'GA.SERVICE|AbstractMetricsFactoryImpl' | trim_and_colour
+        ~/installs/android-sdk-linux/platform-tools/adb logcat -v time | egrep --line-buffered -i --no-group-separator --context=1 'exception|newsblur| at .*java' | egrep --line-buffered -v -i 'GA.SERVICE|AbstractMetricsFactoryImpl|GoogleConversion|touch_boost' | trim_and_colour
     }
 
     function followall() {
