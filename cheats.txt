@@ -42,3 +42,6 @@ ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf deshake=ed
 
 # add to gradle deps to fix maven builds
 testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+
+# strip rogue ANSI colour codes from logs
+perl -pe 's/\e\[?.*?[\@-~]//g'
