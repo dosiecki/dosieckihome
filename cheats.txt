@@ -1,9 +1,6 @@
 # see top 10 memory users:
 /bin/ps -eww --format=rss,vsize,user,args --sort=-rss | head -n10
 
-# new stack in props file (textpad style):
-s/^\([^=]+\)\.Existing=\(.+\)$/\0\n\1.New=\2/
-
 # delete all empty files: 
 find . -type f -empty -delete
 
@@ -26,7 +23,7 @@ git branch -a
 git remote show (master|upstream)
 
 # timkay aws shell upload: 
-aws --curl-options=-k put s.ojii.net/NewsBlur-debug.apk bin/NewsBlur-debug.apk --set-acl=public-read
+aws --curl-options=-k put s3subdom.example.net/file file --set-acl=public-read
 
 # top 10 biggest files on disk: 
 find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
