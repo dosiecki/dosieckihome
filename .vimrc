@@ -38,3 +38,5 @@ set statusline+=%6*\ [col:%03c]                             " column num
 :hi User6 ctermfg=lightgreen  ctermbg=black
 
 :hi LineNr ctermfg=gray      ctermbg=darkblue   " blue line number BG
+
+let g:rainbow_active = 1  " enable rainbow parens plugin
