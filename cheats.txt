@@ -5,7 +5,7 @@
 s/^\([^=]+\)\.Existing=\(.+\)$/\0\n\1.New=\2/
 
 # delete all empty files: 
-find . -type f -empty | xargs rm
+find . -type f -empty -delete
 
 # block an IP: 
 iptables -A OUTPUT -d 10.184.90.73 -j DROP
