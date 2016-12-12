@@ -20,6 +20,8 @@ set undodir=~/.vim/undo          " keep undo buffers in the vim dir
 set undolevels=1024              " max undo levels per buffer
 set hidden                       " allow unsaved buffers to be backgrounded without confirmation
 
+:colorscheme elflord " set before doing any other colour stuff!
+
 set laststatus=2                                            " always show status line
 set statusline=                                             " (reset statusline in case this is a reload)
 set statusline+=%1*\ %F\                                    " path
@@ -30,7 +32,7 @@ set statusline+=%4*\ <br:%{&ff}>                            " newline format
 set statusline+=%5*\ [line:%l\/%L]                          " line num
 set statusline+=%6*\ [col:%03c]                             " column num
 
-:hi User1 ctermfg=lightgray   ctermbg=lightblue
+:hi User1 ctermfg=lightgray   ctermbg=darkblue
 :hi User2 ctermfg=white       ctermbg=darkblue
 :hi User3 ctermfg=lightblue   ctermbg=black
 :hi User4 ctermfg=lightblue   ctermbg=black
