@@ -48,3 +48,6 @@ testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 
 # strip rogue ANSI colour codes from logs
 perl -pe 's/\e\[?.*?[\@-~]//g'
+
+# barebones network uptime monitor
+ping -i 20 -W 20 8.8.8.8 | perl -nle 'print scalar(localtime), " ", $_'
