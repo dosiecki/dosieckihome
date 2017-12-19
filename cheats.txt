@@ -31,9 +31,6 @@ find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
 # get time of latest local block: 
 bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]*\([0-9]*\).*/\1/gp' | perl -e 'print scalar(localtime(<>))."\n"'
 
-# latest bitquick boa sell orders:
-GET 'https://www.bitquick.co/apisell.php' | python -c 'from __future__ import print_function; import json,sys;obj=json.load(sys.stdin); map(lambda i: print(json.dumps(i)), obj);' | recs-grep '$r->{sell_amount_} > 0.05' | recs-sort --key=Dollars_BTC=numeric | recs-xform '$r->remove("time","btcaddressescrow")' | recs-join id id <(GET 'https://www.bitquick.co/buy-2?bank=Bank%20of%20America' | recs-fromre --key=id "orderid=([0-9]*)'") | recs-totable
-
 # ffmpeg to resized webm (near-lossless CRF mixed with b:v causes CBR-like mode)
 ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024:-1,transpose=1 kitties.webm
  #no audio
@@ -51,3 +48,9 @@ perl -pe 's/\e\[?.*?[\@-~]//g'
 
 # barebones network uptime monitor
 ping -i 20 -W 20 8.8.8.8 | perl -nle 'print scalar(localtime), " ", $_'
+
+# wget on unreliable network
+wget --retry-connrefused --waitretry=15 --read-timeout=20 --timeout=15 -t 0 --no-dns-cache --user=u --password=p 'http://'
+
+# rather full nmap scan
+nmap -vv -O -r -Pn -sS -sV --version-intensity 8 -p- -T4 -oA windesk.txt 192.168.1.2
