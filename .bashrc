@@ -30,9 +30,11 @@ if [ "$PS1" ]; then
     export PATH=/home/osiecki/bin:$PATH
     export PATH=/home/osiecki/ttemp/awsshell:$PATH
     export PATH=/home/osiecki/dev/recs/RecordStream/bin:$PATH
-    export PATH=/home/osiecki/installs/android-sdk-linux/platform-tools:$PATH
-    export PATH=/home/osiecki/installs/gradle/gradle-2.4/bin:$PATH
+    export PATH=/home/osiecki/installs/android-sdk-linux/tools:$PATH
+    export PATH=/home/osiecki/installs/gradle/gradle-3.4.1/bin:$PATH
     export PATH=/home/osiecki/installs/PathPicker:$PATH
+
+    export ANDROID_HOME=/home/osiecki/installs/
 
     # osiecki@20140414 - perl path
     export PERL5LIB=$PERL5LIB:/home/osiecki/dev/recs/RecordStream/lib
@@ -110,7 +112,7 @@ if [ "$PS1" ]; then
     export NCURSES_NO_UTF8_ACS=1
 
     # osiecki@20130615 - runtime libs
-    export LD_LIBRARY_PATH=/usr/local/lib/
+    export LD_LIBRARY_PATH=/usr/local/lib/:/usr/lib/x86_64-linux-gnu/
 
     # osiecki@20141108 - no terminal stops
     stty stop undef
@@ -118,6 +120,3 @@ if [ "$PS1" ]; then
 
 fi
 
-export PATH=/home/osiecki/installs/torch/install/bin:$PATH  # Added automatically by torch-dist
-export LD_LIBRARY_PATH=/home/osiecki/installs/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
-export DYLD_LIBRARY_PATH=/home/osiecki/installs/torch/install/lib:$DYLD_LIBRARY_PATH  # Added automatically by torch-dist
