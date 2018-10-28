@@ -32,12 +32,16 @@ find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
 bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]*\([0-9]*\).*/\1/gp' | perl -e 'print scalar(localtime(<>))."\n"'
 
 # ffmpeg to resized webm (near-lossless CRF mixed with b:v causes CBR-like mode)
-ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024:-1,transpose=1 kitties.webm
- #no audio
+ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024:-1 kitties.webm
+ # omit first 10 seconds
+ -ss 00:00:10
+ # no audio
  -an
- #lighten
+ # rotate 180
+ -vf ,transpose=clock,transpose=clock
+ # lighten
  -vf ,curves=preset=lighter
- #deshake
+ # deshake
  -vf ,deshake=edge=clamp
 
 # add to gradle deps to fix maven builds
