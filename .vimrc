@@ -1,3 +1,4 @@
+set nocompatible                 " no legacy
 :syntax on                       " hilight!
 set tabstop=4                    " how to render hard tabs
 set softtabstop=4                " size of tabs
@@ -19,6 +20,9 @@ set undofile                     " persist undo buffers
 set undodir=~/.vim/undo          " keep undo buffers in the vim dir
 set undolevels=1024              " max undo levels per buffer
 set hidden                       " allow unsaved buffers to be backgrounded without confirmation
+set viminfo^=%                   " save buffer list (%) in viminfo
+set foldmethod=syntax            " fold using syntax rules
+set hlsearch                     " highlight all search hits
 
 :colorscheme elflord " set before doing any other colour stuff!
 
@@ -41,4 +45,28 @@ set statusline+=%6*\ [col:%03c]                             " column num
 
 :hi LineNr ctermfg=gray      ctermbg=darkblue   " blue line number BG
 
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'luochen1990/rainbow'
+Plugin 'francoiscabrol/ranger.vim'
+call vundle#end()
+filetype plugin indent on
+
 let g:rainbow_active = 1  " enable rainbow parens plugin
+
+" page up and down by half
+nnoremap <PageUp> <C-u>
+nnoremap <PageDown> <C-d>
+
+" start a new undopoint before edit-mode deletions 
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+
+" hotkey to turn off autoindent
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
+
+autocmd FileType ruby setlocal softtabstop=2 shiftwidth=2 tabstop=2
+autocmd FileType scala setlocal softtabstop=2 shiftwidth=2 tabstop=2
