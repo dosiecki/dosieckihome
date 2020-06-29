@@ -43,6 +43,10 @@ ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024
  -vf ,curves=preset=lighter
  # deshake
  -vf ,deshake=edge=clamp
+ # twitch video backup
+ ffmpeg.exe -i "https://m3u8.url" -c copy -bsf:a aac_adtstoasc "out.mp4"
+ # twitch audio backup from program 1
+ ffmpeg.exe -i "https://m3u8.url" -map 0:p:1:a -c copy justaudio.ts
 
 # add to gradle deps to fix maven builds
 testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
