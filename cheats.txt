@@ -31,8 +31,17 @@ find / -type f -printf '%s %p\n' 2> /dev/null | sort -r -n | head -n 10
 # get time of latest local block: 
 bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]*\([0-9]*\).*/\1/gp' | perl -e 'print scalar(localtime(<>))."\n"'
 
-# ffmpeg to resized webm (near-lossless CRF mixed with b:v causes CBR-like mode)
-ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024:-1 kitties.webm
+# vp8 webm (near-lossless CRF mixed with b:v causes CBR-like mode)
+ffmpeg.exe -i IN.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis OUT.webm
+
+# ffmpet vp9
+ffmpeg.exe -i IN.mp4 -c:v libvpx-vp9 -crf 32 -b:v 0 -c:a libvorbis OUT.webm
+ 
+# ffmpet effects
+ # crop off bottom
+ -vf ,crop=iw:ih-500:0:0
+ # resize (maintain AR)
+ -vf ,scale=1080:-1
  # omit first 10 seconds
  -ss 00:00:10
  # no audio
@@ -43,9 +52,10 @@ ffmpeg.exe -i VID.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis -vf scale=1024
  -vf ,curves=preset=lighter
  # deshake
  -vf ,deshake=edge=clamp
- # twitch video backup
+
+# twitch video backup
  ffmpeg.exe -i "https://m3u8.url" -c copy -bsf:a aac_adtstoasc "out.mp4"
- # twitch audio backup from program 1
+# twitch audio backup from program 1
  ffmpeg.exe -i "https://m3u8.url" -map 0:p:1:a -c copy justaudio.ts
 
 # add to gradle deps to fix maven builds
