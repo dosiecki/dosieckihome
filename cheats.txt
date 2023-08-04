@@ -34,7 +34,7 @@ bitcoin-cli getblock `bitcoin-cli getbestblockhash` | sed -n 's/[ ":]*time[^0-9]
 # vp8 webm (near-lossless CRF mixed with b:v causes CBR-like mode)
 ffmpeg.exe -i IN.mp4 -c:v libvpx -crf 8 -b:v 0.9M -c:a libvorbis OUT.webm
 
-# ffmpet vp9
+# ffmpeg vp9
 ffmpeg.exe -i IN.mp4 -c:v libvpx-vp9 -crf 32 -b:v 0 -c:a libvorbis OUT.webm
  
 # ffmpet effects
@@ -54,9 +54,12 @@ ffmpeg.exe -i IN.mp4 -c:v libvpx-vp9 -crf 32 -b:v 0 -c:a libvorbis OUT.webm
  -vf ,deshake=edge=clamp
 
 # twitch video backup
- ffmpeg.exe -i "https://m3u8.url" -c copy -bsf:a aac_adtstoasc "out.mp4"
+ffmpeg -i "https://m3u8.url" -c copy -bsf:a aac_adtstoasc "out.mp4"
 # twitch audio backup from program 1
- ffmpeg.exe -i "https://m3u8.url" -map 0:p:1:a -c copy justaudio.ts
+ffmpeg -i "https://m3u8.url" -map 0:p:1:a -c copy justaudio.ts
+
+# unpack opus from webm container
+ffmpeg - i 'infile.webm' -acodec copy 'outfile.opus'
 
 # add to gradle deps to fix maven builds
 testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
